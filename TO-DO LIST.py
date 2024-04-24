@@ -38,6 +38,9 @@ def display_tasks(tasks):
         status = 'Completed' if task.completed else 'Incomplete'
         print(f"{i}. {task.title} - {task.description} - Due: {due_date} - {status}")
 
+def delete_tasks():
+    open("tasks.json", "w").close()  # Truncate the file
+
 def main():
     tasks = load_tasks()
 
@@ -46,7 +49,8 @@ def main():
         print("1. Add Task")
         print("2. View Tasks")
         print("3. Mark Task as Completed")
-        print("4. Exit")
+        print("4. Delete All Tasks")
+        print("5. Exit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -73,6 +77,9 @@ def main():
             else:
                 print("No tasks to complete.")
         elif choice == "4":
+            delete_tasks()
+            print("All tasks deleted successfully!")
+        elif choice == "5":
             print("Exiting...")
             break
         else:
